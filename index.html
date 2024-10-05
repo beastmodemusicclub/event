@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte à rebours</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&family=Jaro:opsz@6..72&family=Kalnia+Glaze:wght@100..700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .countdown-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .orbitron-countdown {
+            font-family: "Orbitron", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 2em;
+            color: black;
+        }
+        .honk-text {
+            font-family: "Honk", system-ui;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+                "MORF" 15,
+                "SHLN" 50;
+            font-size: 3em;
+            color: white;
+            margin-top: 50px;
+        }
+        .jaro-unique {
+            font-family: "Jaro", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 2em;
+            color: white;
+        }
+        .kalnia-glaze-unique {
+            font-family: "Kalnia Glaze", serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 100;
+            font-size: 2em;
+            color: red;
+        }
+        .bottom-text {
+            text-align: center;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h2 class="demoDate orbitron-countdown"></h2>
+    </div>
+    <p class="honk-text">Prêt(e) à assister à l'évènement de l'année ?</p>
+
+    <footer>
+        <div class="bottom-text">
+            <span class="jaro-unique">célébré par </span>
+            <span class="kalnia-glaze-unique">BMMC</span>
+        </div>
+    </footer>
+
+    <script>
+        const text = document.querySelector('.demoDate');
+
+        function getChrono() {
+            const now = new Date().getTime();
+            const countdownDate = new Date('May 16, 2024').getTime();
+
+            const distanceBase = countdownDate - now;
+
+            const days = Math.floor(distanceBase / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distanceBase % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distanceBase % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distanceBase % (1000 * 60)) / 1000);
+
+            text.innerText = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        getChrono();
+
+        const countDownInterval = setInterval(() => {
+            getChrono();
+        }, 1000);
+    </script>
+</body>
+</html>
